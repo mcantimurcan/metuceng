@@ -1,2 +1,6 @@
-# metuceng
-homeworks and projects i made while i was studying in metu computer engineering.
+# pa1
+
+my solution for the "pa1" in metu computer engineering, ceng213 course.
+
+grade: 100/100
+
