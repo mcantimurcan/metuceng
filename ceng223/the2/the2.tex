@@ -1,0 +1,341 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+\usepackage{fitch}
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name : Mithat Can Timurcan\\
+Id Number :  2581064\\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+\paragraph*{a)}
+\begin{itemize}
+            \item Assume that the set $C \subseteq \mathbb{R}^n $ is a convex set.
+            \item Since $C$ is a convex set, we have the following:
+            \begin{equation*}
+                \begin{split}
+                 \forall x_1, x_2 \in C, t \in [0,1] \quad tx_1+(1-t)x_2\in C \\
+                \end{split}
+            \end{equation*}
+            \item We're going to use mathematical induction to prove that for a fixed $m > 3$, any linear combination of m points in the set C is also in the set C.
+            \item \textbf{Base Case ($m = 3$):}
+            \begin{itemize}
+                \item Consider three points $x_1, x_2, x_3$ in the convex set $C$. We want to prove that for any non-negative weights $\lambda_1, \lambda_2, \lambda_3$ such that $\sum_{i=1}^{3} \lambda_i = 1$, the convex combination $\sum_{i=1}^{3} \lambda_i x_i$ is also in $C$.
+                \item Since \(C\) is convex, the line segment between any two points in \(C\) lies in \(C\). We can use this property to prove the base case.
+                \item Consider the convex combination \(\lambda_1 x_1 + \lambda_2 x_2\). Without loss of generality, let's look at the combination of the first two points:
+                \begin{equation*}
+                    \begin{split}
+                        \lambda_1 x_1 + \lambda_2 x_2
+                    \end{split}
+                \end{equation*}
+                \item Since \(\lambda_1 + \lambda_2 = 1\), this is a convex combination of \(x_1\) and \(x_2\). By the convexity of \(C\), this combination is in \(C\).
+                \item Now, consider the combination of this result with the third point:
+                \begin{equation*}
+                    \begin{split}
+                        \lambda_3 (\lambda_1 x_1 + \lambda_2 x_2) + (1 - \lambda_3) x_3 = \lambda_3 \lambda_1 x_1 + \lambda_3 (1-\lambda_1) x_2 + (1-\lambda_3)x_3
+                    \end{split}
+                \end{equation*}
+                \item Since $\lambda_3 \lambda_1 + \lambda_3(1-\lambda_1) + (1-\lambda_3) = 1$, this is a convex combination of $\lambda_1 x_1 + \lambda_2 x_2$ and $x_3$. Therefore, it is also in $C$.
+                \item Hence, we've proved that the base case holds.
+            \end{itemize}
+            \item \textbf{Inductive Step ($m = 3$):}
+            \begin{itemize}
+                \item Assume the property holds for some \(k\) (i.e., for any \(k\) points in \(C\), their convex combination is in \(C\)). We want to prove it for \(k+1\).
+                \item Consider \(k+1\) points \(x_1, x_2, \ldots, x_{k+1}\) in \(C\). We can use the inductive hypothesis on the first \(k\) points:
+                \[
+                \sum_{i=1}^{k} \lambda_i x_i \in C
+                \]
+                \item Now, for the \(k+1\)-th point \(x_{k+1}\), we can use the base case (\(m=3\)):
+                \[
+                \lambda_{k+1} x_{k+1} + (1 - \lambda_{k+1})\left(\sum_{i=1}^{k} \lambda_i x_i\right)
+                \]
+                \item Since \(\lambda_{k+1} \geq 0\) and \(\sum_{i=1}^{k+1} \lambda_i = 1\), this is a convex combination of \(x_{k+1}\) and \(\sum_{i=1}^{k} \lambda_i x_i\). By the base case, this convex combination is in \(C\). Therefore, the property holds for \(k+1\).
+            \end{itemize}
+            \item By mathematical induction, we've proved that for a fixed $m > 3$, any linear combination of m points in the set C is also in the set C.
+\end{itemize}{}
+\paragraph*{b)}
+\begin{itemize}
+            \item Assume that the functions $f$ and $g$ are convex functions.
+            \item Since $f$ and $g$ are a convex functions, we have the following:
+            \begin{equation*}
+                \begin{split}
+                    \forall x_1, x_2 \in \mathbb{R}^n, t \in [0, 1] \quad f(tx_1 + (1 - t)x_2) \le tf(x_1) + (1 - t)f (x_2)\\
+                    \forall x_1, x_2 \in \mathbb{R}^n, t \in [0, 1] \quad g(tx_1 + (1 - t)x_2) \le tg(x_1) + (1 - t)g (x_2)\\
+                \end{split}
+            \end{equation*}
+            \item Let's consider the functions: 
+            \begin{equation*}
+                \begin{split}
+                    f(x) = x^4, \ g(x) = x^2 - 4 \text{ and their composition } h(x) = f(g(x)) = (x^2-4)^4\\
+                \end{split}
+            \end{equation*}
+            \item Pick $x_1 = 1/3$ , $x_2 = 1/4$ and $t = 0.5$:
+            \begin{equation*}
+                \begin{split}
+                    h(tx_1+(1 - t)x_2) = h(0.5 \times 1/3 + 0.5 \times 1/4)=h(7/48)=((7/48)^2 - 1)^4\\
+                    th(x_1)+(1-t)h(x_2)=0.5((1/3)^2-1) + 0.5((1/4)^2-1)\\
+                \end{split}
+            \end{equation*}
+            \item Comparing these results:
+            \begin{equation*}
+                \begin{split}
+                    ((7/48)^2 - 1)^4 \approx 0.9176\\
+                    0.5((1/3)^2-1)^4 + 0.5((1/4)^2-1)^4 \approx 0.6983\\
+                \end{split}
+            \end{equation*}
+            \item Since $((7/48)^2 - 1)^4 > 0.5((1/3)^2-1)^4 + 0.5((1/4)^2-1)^4$, the inequality in the definition doesn't hold. Hence while $f$ and $g$ are convex functions, their composite function $f(g(x))$ may not be convex.
+\end{itemize}{}
+\paragraph*{c)}
+\begin{itemize}
+            \item Let A function $f(.) : S \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ is a convex function be $s$ and $S$ is convex set and the function
+            $g(t) = f (x + tv)$ is a convex function for all $t \in \mathbb{R}$ such that $x + tv \in S$ be $r$.
+            \item We need to show that $s\rightarrow r$ and $r \rightarrow s$, then we're done.
+            \item $s \rightarrow r$.
+            \begin{itemize}
+                \item Assume that  $f(.) : S \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ is a convex function.
+                \item If $f(.)$ is a convex function and defined on S, then S must be a convex set since the domain of a convex function is also a convex set by the definition of convexity.
+                \item Now let's consider $g(x) = f(x+tv)$. We need to show that $g(t)$ is convex $\forall t$ such that $x + tv \in S$.
+                \item Let $y_1 = x + t_1v$ and $y_2 = x + t_2v$ be two points in $S$ where $t_1,t_2$ such that $y_1, y_2 \in S$.
+                \item Consider $z = \lambda y_1 + (1 - \lambda)y_2$, where $\lambda$ is a convex linear combination coefficient. ($\lambda \in [0,1]$)
+                \begin{equation*}
+                    \begin{split}
+                        z = \lambda (x + t_1v) + (1-\lambda)(x+t_2v)\\
+                        z = x + (\lambda t_1 + (1-\lambda) t_2)v\\
+                    \end{split}
+                \end{equation*}
+                \item Since $S$ is a convex set, $x + (\lambda t_1 + (1-\lambda) t_2)v \in S$ and by the convexity of $f(.)$, we can say that $g(t) = f(x + tv)$ is also convex.
+                \item $s \rightarrow r$ has been proved.
+            \end{itemize}
+            \item $r \rightarrow s$.
+            \begin{itemize}
+                \item Assume that $S$ is a convex set and $g(t) = f(x + tv)$ is a convex function for all $t \in \mathbb{R}$ such that $x + tv \in S$. 
+                \item In order to show $f(.)$ is a convex function, we need to consider two arbitrary points $x_1,x_2$ in the domain of f and show the inequality $f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1-\lambda)f(x_2)$ holds for $\forall \lambda \in [0,1]$.
+                \item Consider $x_1, x_2$ in the domain of $f(.)$. Let $\lambda$ be a convex linear combination coefficient ($\lambda \in [0,1]$).
+                \item Now, let's consider $z = \lambda x_1 + (1-\lambda)x_2$
+                \item Since $S$ is convex, by the definition we can say that $z \in S$. Therefore we can also use the convexity of $g(t) = f(x + tv)$ for $t$ such that $x+tv=z$.
+                \begin{equation*}
+                    \begin{split}
+                        g(t) = f(x+tv) = f(\lambda x_1 + (1-\lambda)x_2)\\
+                    \end{split}
+                \end{equation*}
+                \item And by the convexity of $g(t)$ we can obtain:
+                \begin{equation*}
+                    \begin{split}
+                        f(\lambda x_1 + (1-\lambda)x_2) \leq \lambda f(x_1) + (1-\lambda)f(x_2)\\
+                    \end{split}
+                \end{equation*}
+                \item Therefore, $r \rightarrow s$ is also proved.
+            \end{itemize}
+\end{itemize}{}
+
+\section*{Answer 2}
+\paragraph*{a)}
+\begin{itemize}
+    \item (i) where $X$ is uncountable.
+    \begin{itemize}
+        \item Let's denote this set as $\Sigma$.
+        \item Consider X as the set of real numbers. Since $X-X = \emptyset$, we can say that $X \in \Sigma$. However, it's complement $\emptyset$ is not in $\Sigma$ since $X-\emptyset = X$ and $X$ is not finite.
+        \item Therefore, the given set $\Sigma$ is not $\sigma$-algebra on $X$ when $X$ is uncountable.
+    \end{itemize}
+    \item (ii) where $X$ is countably infinite.
+    \begin{itemize}
+        \item Let's denote this set as $\Sigma$.
+        \item Consider X as the set of natural numbers. Since $X-X = \emptyset$, we can say that $X \in \Sigma$. However, it's complement $\emptyset$ is not in $\Sigma$ since $X-\emptyset = X$ and $X$ is not finite.
+        \item Therefore, the given set $\Sigma$ is not $\sigma$-algebra on $X$ when $X$ is countably infinite.
+    \end{itemize}
+    \item (iii) where $X$ is finite.
+    \begin{itemize}
+        \item Let's denote this set as $\Sigma$ and check the conditions.
+        \item $X$ is in $\Sigma$ since $X-X=\emptyset$ is finite and $\emptyset$ is also in $\Sigma$ since $X-\emptyset = X$ is finite.
+        \item If $A$ is in $\Sigma$, then $X-A$ is either finite or $\emptyset$. The complement of $X-A$ is A, which is also a finite set in $\Sigma$.
+        \item If $A_1,A_2,...$ are in $\Sigma$, then their complements $X-A_1,X-A_2$, are finite or $\emptyset$. The union of these sets corresponds to the complement of the union $A=A_1\cup A_2\cup...$, which is also in $\Sigma$.
+        \item Therefore, the given set $\Sigma$ is a $\sigma$-algebra on $X$ when $X$ is finite.
+    \end{itemize}
+\end{itemize}
+\paragraph*{b)}
+\begin{itemize}
+    \item (i) where $X$ is uncountable.
+    \begin{itemize}
+     \item Let's denote this set as $\Sigma$.
+        \item Consider X as the set of real numbers and $U = \mathbb{R} - \mathbb{N}$. Since $X-U = \mathbb{N}$, we can say that $U \in \Sigma$. However, it's complement $\mathbb{N}$ is not in $\Sigma$ since $X-\mathbb{N} = \mathbb{R} - \mathbb{N}$ and $\mathbb{R} - \mathbb{N}$ is uncountable.
+        \item Therefore, the given set $\Sigma$ is not $\sigma$-algebra on $X$ when $X$ is uncountable.
+    \end{itemize}
+
+    \item (ii) where $X$ is countably infinite.
+    \begin{itemize}
+        \item Let's denote this set as $\Sigma$ and check the conditions.
+        \item $X$ is in $\Sigma$ since $X-X=\emptyset$ is countable and $\emptyset$ is also in $\Sigma$ since $X-\emptyset = X$ is countable.
+        \item If $A$ is in $\Sigma$, then $X-A$ is either countable or is all of $X$. The complement of $X-A$ is A, which is also a countable set in $\Sigma$ since $A\subseteq X$.
+        \item If $A_1,A_2,...$ are in $\Sigma$, then their complements $X-A_1,X-A_2$, are either countable or are all of $X$. The union of these sets corresponds to the complement of the union $A=A_1\cup A_2\cup...$, which is also in $\Sigma$ since union of countable sets is also countable.
+        \item Therefore, the given set $\Sigma$ is a $\sigma$-algebra on $X$ when $X$ is countably infinite.
+    \end{itemize}
+    \item (iii) where $X$ is finite.
+    \begin{itemize}
+        \item Let's denote this set as $\Sigma$ and check the conditions.
+        \item $X$ is in $\Sigma$ since $X-X=\emptyset$ is countable and $\emptyset$ is also in $\Sigma$ since $X-\emptyset = X$ and $X$ is countable.
+        \item If $A$ is in $\Sigma$, then $X-A$ is either finite or $\emptyset$, therefore countable. The complement of $X-A$ is A, which is also a countable set in $\Sigma$.
+        \item If $A_1,A_2,...$ are in $\Sigma$, then their complements $X-A_1,X-A_2$, are finite or $\emptyset$, therefore countable. The union of these sets corresponds to the complement of the union $A=A_1\cup A_2\cup...$, which is also countable set in $\Sigma$.
+        \item Therefore, the given set $\Sigma$ is a $\sigma$-algebra on $X$ when $X$ is finite.
+    \end{itemize}
+\end{itemize}
+\paragraph*{c)}
+\begin{itemize}
+    \item (i) where $X$ is uncountable.
+    \begin{itemize}
+        \item Let's denote this set by $\Sigma$.
+        \item Consider X as the set of real numbers. Let $U = \{1,...,n\}$ then $X - U = \mathbb{R} - \{1,...,n\}$ which is infinite, therefore it's in $\Sigma$. However, it's complement $\mathbb{R} - \{1,...,n\}$ is not in $\Sigma$ since $\mathbb{R} - (\mathbb{R} - \{1,...,n\}) = \{1,...,n\}$ which is not infinite or $\Sigma$ or $X$.
+        \item Therefore, the given set $\Sigma$ is not a $\sigma$-algebra on $X$ when $X$ is uncountable.
+    \end{itemize}
+    \item (ii) where $X$ is countably infinite.
+    \begin{itemize}
+        \item Let's denote this set by $\Sigma$.
+        \item Consider X as the set of national numbers. Let $U = \{1,...,n\}$ then $X - U = \mathbb{N} - \{1,...,n\}$ which is infinite, therefore it's in $\Sigma$. However, it's complement $\mathbb{N} - \{1,...,n\}$ is not in $\Sigma$ since $\mathbb{N} - (\mathbb{N} - \{1,...,n\}) = \{1,...,n\}$ which is not infinite or $\Sigma$ or $X$.
+        \item Therefore, the given set $\Sigma$ is not a $\sigma$-algebra on $X$ when $X$ is countably infinite.
+    \end{itemize}
+    \item (iii) where $X$ is finite.
+    \begin{itemize}
+        \item Let's denote this set by $\Sigma$.
+        \item Since $X$ is finite, $X-U$ will also be finite. Therefore $\Sigma$ will only include $X$ itself and the $\emptyset$.
+        \item $X$ is in $\Sigma$.
+        \item $\Sigma$ is closed under complementation. The complement of $X$ is the $\emptyset$ which is also in $\Sigma$ and vice versa.
+        \item $\Sigma$ is closed under countable unions. The union of $X$ and $\emptyset$ is $X$ which is also in $\Sigma$.
+        \item Therefore, the given set $\Sigma$ is a $\sigma$-algebra on $X$ when $X$ is finite.
+    \end{itemize}
+\end{itemize}
+\section*{Answer 3}
+\paragraph*{a)}
+\begin{itemize}
+            \item Let $ax \equiv b($mod $p)$ has a solution for $x$ be $s$ and $gcd(a, p)| b$ be $r$.
+            \item We need to show that $s\rightarrow r$ and $r \rightarrow s$, then we're done.
+            \item $s \rightarrow r$.
+            \begin{itemize}
+                \item Assume that $ax\equiv b($mod $ p)$, then $ax = pt + b$, $\exists t \in \mathbb{Z}$.
+                \item $ax - pt = b$
+                \item Let $gcd(a,p) = d$ then $d|a$ and $d|p$.
+                \item We can also say that $d|ax$ and $d|pt$ $\rightarrow$ $d|(ax-pt)$.
+                \item $d|(ax-pt)$ $\rightarrow$ $d|b$.
+                \item We get $gcd(a,p)|b$. $s \rightarrow r$ has been proved.
+            \end{itemize}{}
+            \item $r \rightarrow s$.
+            \begin{itemize}
+                \item Assume that $d=gcd(a,p)$, then $\exists k,t \in \mathbb{Z}$  such that $ak+pt=d$ by Bezout's Identity.
+                \item $b=cd \rightarrow b=c(ak+pt)=a(ck)+p(ct)$
+                \item Therefore, we get a solution for $ax \equiv b($mod $p)$.
+                \item $r\rightarrow s$ has been proved.
+            \end{itemize}{}
+\end{itemize}{}
+\paragraph*{b)}
+\begin{itemize}
+    \item Assume we have the pair of congruences:
+    \begin{equation*}
+        \begin{split}
+            &a_1x \equiv b_1 \pmod{p_1} \\
+            &a_2x \equiv b_2 \pmod{p_2}
+        \end{split}
+    \end{equation*}
+    \item We are given the conditions $\gcd(p_1, p_2) = 1$, $\gcd(a_1, p_1) \mid b_1$, and $\gcd(a_2, p_2) \mid b_2$.
+    \item Let $d = \gcd(p_1, p_2)$. Since $d = \gcd(p_1, p_2) = 1$, we can apply Bezout's Identity to find integers $m$ and $n$ such that $mp_1 + np_2 = 1$.
+    \item Now, consider the following linear combination:
+    \begin{equation*}
+        \begin{split}
+            c = m \cdot p_1 \cdot b_2 + n \cdot p_2 \cdot b_1
+        \end{split}
+    \end{equation*}
+    \item By rearranging the terms, we get:
+    \begin{equation*}
+        \begin{split}
+            c &\equiv m \cdot p_1 \cdot b_2 \pmod{p_1} \\
+            c &\equiv n \cdot p_2 \cdot b_1 \pmod{p_2}
+        \end{split}
+    \end{equation*}
+    \item Now, let's consider $a = a_1 \cdot p_2 \cdot b_2 + a_2 \cdot p_1 \cdot b_1$. Notice that $a$ is a linear combination of $a_1$ and $a_2$ with coefficients being multiples of $p_1$ and $p_2$.
+    \item Now, let's show that $x = c$ satisfies both congruences:
+    \begin{equation*}
+        \begin{split}
+            a_1 \cdot x &= a_1 \cdot (m \cdot p_1 \cdot b_2 + n \cdot p_2 \cdot b_1) \\
+            a_2 \cdot x &= a_2 \cdot (m \cdot p_1 \cdot b_2 + n \cdot p_2 \cdot b_1)
+        \end{split}
+    \end{equation*}
+    \item Now, consider these expressions modulo $p_1$ and $p_2$. It will be found that they are congruent to $b_1$ and $b_2$ modulo $p_1$ and $p_2$ respectively.
+    \item Therefore, $x = c$ is a solution to the system of congruences $a_1x \equiv b_1 \pmod{p_1}$ and $a_2x \equiv b_2 \pmod{p_2}$ when $\gcd(p_1, p_2) = 1$, $\gcd(a_1, p_1) \mid b_1$, and $\gcd(a_2, p_2) \mid b_2$.
+\end{itemize}{}
+\paragraph*{c)}
+\begin{itemize}
+    \item To prove that the given system of congruences has a solution of the form $x \equiv c \pmod{\Pi}$, where $\Pi = p_1p_2 \dots p_k$, $\gcd(p_1, \ldots, p_k) = 1$, and $\gcd(a_i, p_i) \mid b_i$ for some $c \in \mathbb{Z}$ and $i = 1, \ldots, k$, we can use the Chinese Remainder Theorem.
+    \item The Chinese Remainder Theorem states that if $m_1, m_2, \ldots, m_k$ are pairwise coprime integers (i.e., $\gcd(m_i, m_j) = 1$ for all $i \neq j$), and $a_1, a_2, \ldots, a_k$ are any integers, then the system of simultaneous congruences:
+    \begin{equation*}
+        \begin{split}
+            x &\equiv a_1 \pmod{m_1} \\
+            x &\equiv a_2 \pmod{m_2} \\
+            & \vdots \\
+            x &\equiv a_k \pmod{m_k}
+        \end{split}
+    \end{equation*}
+    has a unique solution modulo $M = m_1m_2 \dots m_k$.
+    \item Now, let's relate this to the given system of congruences:
+    \begin{equation*}
+        \begin{split}
+            a_1x &\equiv b_1 \pmod{p_1} \\
+            a_2x &\equiv b_2 \pmod{p_2} \\
+            & \vdots \\
+            a_kx &\equiv b_k \pmod{p_k}
+        \end{split}
+    \end{equation*}
+    \item Note that the conditions $\gcd(p_1, \ldots, p_k) = 1$ and $\gcd(a_i, p_i) \mid b_i$ for each $i$ are satisfied.
+    \item Now, set $m_1 = p_1, m_2 = p_2, \ldots, m_k = p_k$. Since $\gcd(p_i, p_j) = 1$ for $i \neq j$, the conditions of the Chinese Remainder Theorem are met.
+    \item By Chinese Remainder Theorem, the system of congruences has a unique solution $x$ modulo $M = p_1p_2 \dots p_k = \Pi$. Therefore, there exists a solution of the form $x \equiv c \pmod{\Pi}$.
+\end{itemize}{}
+
+\section*{Answer 4}
+\paragraph*{a)}
+\begin{itemize}
+            \item Let's denote the set $\prod\nolimits_{i \in \mathbb{Z}^+} X$ as $X^T$. Then we'll assume that this set is countable. Since it's countable, there should exist such a function $f: \mathbb{Z}^+ \rightarrow X^T$ which is surjective.
+            \item For a defined function $f$, we have $f(n) = (x_{n1}, x_{n2}, ..., x_{nn}, ...)$ where each $x_{ij} \in \{a,...,z\}$.
+            \item Then we can consider $y = (y_1, y_2, ...) \in X^T$ defined by
+            $$
+                y_n=
+                \begin{cases}
+                    c \quad \text{if } x_{nn} \neq c\\
+                    t \quad \text{if } x_{nn} = c\\
+                \end{cases}
+            $$
+            \item Such defined y is not mapped to by our function $f$, it differs from each $f(n)$ by at least one coordinate. Therefore, $f$ is not surjective, we get a contradiction. The set $X^T$ is not countable.
+
+\end{itemize}{}
+\paragraph*{b)}
+\begin{itemize}
+    \item Let $\{Y_i\}_{i \in \mathbb{Z}^+}$ be a family of sets, each of which is countably infinite. We want to determine whether the set $S = \bigcup_{i \in \mathbb{Z}^+} Y_i$ is countable or not.
+    \item To show whether $S$ is countable or not, we need to check if we can construct a function $f: \mathbb{Z}^+ \rightarrow S$ which is surjective.
+    \item Since each $Y_i$ is countably infinite, we can list its elements as $Y_i = \{y_{i1}, y_{i2}, y_{i3}, ...\}$. Now, we can create a function that maps the elements of each set:
+    \begin{equation*}
+        \begin{split}
+            f(1) = y_{11},\\
+            f(2) = y_{21},\\
+            f(3) = y_{12},\\
+            f(4) = y_{31},\\
+            f(5) = y_{22},\\
+            f(6) = y_{13},\\
+        \end{split}
+    \end{equation*}
+    and so on.
+    \item Therefore, by using Cantor's diagonal argument, we can say that $S = \bigcup_{i \in \mathbb{Z}^+} Y_i$ is countable.
+\end{itemize}{}
+\end{document}

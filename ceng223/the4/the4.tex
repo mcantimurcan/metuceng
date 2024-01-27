@@ -1,0 +1,225 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+\usepackage{fitch}
+\usepackage{tikz}
+\usepackage{nicematrix}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name : Mithat Can Timurcan\\
+Id Number :  2581064\\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+\begin{itemize}
+ \item Let us denote the number of edges in a cube graph as $a_n$.
+ \item While constructing a cube graph, we are using the previous edges with a repeating manner. For example, while constructing $Q_2$, we take two copies of $Q_1$ and add $2$ edges (since it has $2^{2-1}$ vertices) to it in order to connect the copies we use.
+ \item Recursively, we can always take two copies of the previous cube graphs, and connect the vertices they have. This leads us having $2a_{n-1}$ edges coming from the previous cube graphs and $2^{n-1}$ edges to connect the vertices of the copies.
+ \item Therefore, we get the following recurrence relation:
+\end{itemize}
+\begin{equation*}
+ \begin{aligned}
+  a_n = 2a_{n-1}+2^{n-1}, \ n \geq 1
+ \end{aligned}
+\end{equation*}
+\section*{Answer 2}
+\begin{itemize}
+ \item The generating function $<1,4,7,10,13,...>$ can be written as the summation of $<1,1,1,1,1,...>$ and $<0,3,6,9,12,...>$. Now let's find the closed form of these generating functions:
+ \begin{equation*}
+    \begin{aligned}
+     \dfrac{1}{1-x}\leftrightarrow <1,1,1,1,...>\text{from Table 1 on Section 8.4}\\
+        \frac{d}{dx}(\dfrac{1}{1-x})\leftrightarrow <1,2,3,4,...> \text{taking the derivative of the function}\\
+        \dfrac{1}{(1-x)^2}\leftrightarrow <1,2,3,4,...> \text{from Table 1 on Section 8.4}\\
+        \dfrac{x}{(1-x)^2}\leftrightarrow <0,1,2,3,...> \text{shifting once to the right by multiplying with $x$}\\
+        \dfrac{3x}{(1-x)^2}\leftrightarrow <0,3,6,9,...>\text{multiplying with $3$}\\
+    \end{aligned}
+ \end{equation*}
+\item Now we can sum these functions:
+\begin{equation*}
+    \begin{split}
+        F(x) = \dfrac{1}{1-x} + \dfrac{3x}{(1-x)^2}\\
+        F(x) = \dfrac{1+2x}{(1-x)^2}
+    \end{split}
+ \end{equation*}
+\end{itemize}
+\section*{Answer 3}
+\begin{itemize}
+ \item We can denote $F(x) = \sum_{n=0}^{\infty} a_n x^n$, plugging into the equation we get:
+ \begin{equation*}
+    \begin{split}
+        \sum_{n=1}^{\infty} a_n x^n = \sum_{n=1}^{\infty} (a_{n-1} + 2^n) x^n\\
+        = x\sum_{n=1}^{\infty} a_{n-1} x^{n-1} + \sum_{n=1}^{\infty} 2^n x^n \\
+    \end{split}
+ \end{equation*}
+ \item We can use the equations on Table 1 of Section 8.4:
+ \begin{equation*}
+  \begin{aligned}
+   F(x) - a_0 = xF(x) + \dfrac{1}{1-2x} - 1
+  \end{aligned}
+ \end{equation*}
+ \item Since $a_0 = 1$ we get $F(x)$ as follows:
+ \begin{equation*}
+    \begin{split}
+        F(x) - 1 = xF(x) + \dfrac{1}{1-2x} - 1 \\
+        F(x) = xF(x) + \dfrac{1}{1-2x} \\
+        (1-x)F(x) = \dfrac{1}{1-2x} \\
+        F(x) = \dfrac{1}{(1-x)(1-2x)} = \dfrac{A}{1-x} + \dfrac{B}{1-2x}\\
+        A-2Ax + B - Bx = 1\\
+        A+B = 1 \text{ and} -2A-B = 0 \\
+        \text{we get } A = -1 \text{ and } B = 2\\
+        F(x) = \dfrac{2}{1-2x} - \dfrac{1}{1-x}\\
+    \end{split}
+ \end{equation*}
+ \item Now we can use the corresponding generating functions:
+ \begin{equation*}
+    \begin{split}
+        \dfrac{1}{1-2x}\leftrightarrow <1,2,4,8,...,2^n,...>\text{from Table 1 on Section 8.4}\\
+        \dfrac{1}{1-x}\leftrightarrow <1,1,1,1,...,1,...>\text{from Table 1 on Section 8.4}\\
+    \end{split}
+ \end{equation*}
+ \item Multiply the first one by 2 and subtract the second one from it:
+ \begin{equation*}
+    \begin{split}
+        F(x)=\dfrac{2}{1-2x} - \dfrac{1}{1-x} \leftrightarrow <1,3,7,15,...,2^{n+1}-1,...>\\
+    \end{split}
+ \end{equation*}
+ \item Since the n-th term will be equal to $a_n$, we get $a_n = 2^{n+1} - 1$.
+\end{itemize}
+
+\section*{Answer 4}
+\subsection*{a)}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+%%   kw   (name)   (x, y)   {text}
+    \node (md1) at (2, 3)     {18};
+    \node (md2) at (1, 1)     {2};
+    \node (rt2) at (3, 2)     {9};
+    \node (rt3) at (3, 0)     {3};
+	\node (md4) at (2, -1)     {1};
+
+    \draw (md1) -- (md2);
+    \draw (rt2) -- (rt3);
+    \draw (rt3) -- (md4);
+    \draw (md2) -- (md4);
+    \draw (rt2) -- (md1);
+\end{tikzpicture}
+\caption{Hasse Diagram for relation $R$}
+\end{figure}
+\subsection*{b)}
+\begin{figure}[H]
+\centering
+$\begin{bNiceMatrix}[first-row,last-row,first-col,last-col]
+    & 1 & 2 & 3 & 9 & 18    \\
+1 & 1 & 1 & 1 & 1 & 1  &  \\
+2 & 0 & 1 & 0 & 0 & 1  & \\
+3 & 0 & 0 & 1 & 1 & 1  &  \\
+9 & 0 & 0 & 0 & 1 & 1  &  \\
+18 & 0 & 0 & 0 & 0 & 1  &  \\
+\\
+\end{bNiceMatrix}$
+    \caption{Matrix representation for relation $R$}
+\end{figure}
+\subsection*{c)}
+\begin{itemize}
+ \item Let's see for every pair if we have a unique least upper bound (LUB) and unique greatest lower bound (GLB):
+ \begin{itemize}
+    \item For (1,2) LUB is 2, GLB is 1.
+    \item For (1,3) LUB is 3, GLB is 1.
+    \item For (1,9) LUB is 9, GLB is 1.
+    \item For (1,18) LUB is 18, GLB is 1.
+    \item For (2,3) LUB is 18, GLB is 1.
+    \item For (2,9) LUB is 18, GLB is 1.
+    \item For (2,18) LUB is 18, GLB is 2.
+    \item For (3,9) LUB is 9, GLB is 3.
+    \item For (3,18) LUB is 18, GLB is 3.
+    \item For (9,18) LUB is 18, GLB is 9.
+ \end{itemize}
+ \item We don't have to do these steps for the reflexive ones since their LUB and GLB will be the same. And also we don't have to do these steps for the pairs that are ordered the other way around since their LUB and GLB will be the same ones we've found before.
+ \item Therefore we've shown that $(A,R)$ is a lattice.
+\end{itemize}
+
+\subsection*{d)}
+\begin{figure}[H]
+\centering
+$\begin{bNiceMatrix}[first-row,last-row,first-col,last-col]
+    & 1 & 2 & 3 & 9 & 18    \\
+1 & 1 & 1 & 1 & 1 & 1  &  \\
+2 & 1 & 1 & 0 & 0 & 1  & \\
+3 & 1 & 0 & 1 & 1 & 1  &  \\
+9 & 1 & 0 & 1 & 1 & 1  &  \\
+18 & 1 & 1 & 1 & 1 & 1  &  \\
+\\
+\end{bNiceMatrix}$
+    \caption{Matrix representation for the symmetric closure of $R$, $R_s$}
+\end{figure}
+\subsection*{e)}
+\begin{itemize}
+ \item By the definition of comparability, in order to identify 2 elements a and b as comparable with respect to the binary relation $R$, we need to have $aRb$ or $bRa$ as true. In other words we need to have $(a,b)$ or $(b,a)$ in our relation. Let's check this for 2 and 9:
+ \begin{itemize}
+  \item $2R9 \rightarrow$ false since we don't have $(2,9)$ in our relation.
+  \item $9R2 \rightarrow$ false since we don't have $(9,2)$ in our relation.
+ \end{itemize}
+ \item Now let's check it for 3 and 18:
+ \begin{itemize}
+  \item $3R18 \rightarrow$ true since we have $(3,18)$ in our relation.
+  \item $18R3 \rightarrow$ false since we don't have $(18,3)$ in our relation.
+ \end{itemize}
+ \item Therefore, we can say that 2 and 9 are not comparable, but 3 and 18 are comparable.
+\end{itemize}
+
+
+\section*{Answer 5}
+\subsection*{a)}
+\begin{itemize}
+ \item A reflexive relation on a set $A$ should include all pairs $(a,a)$ for each element in $A$. There are $\begin{pmatrix} n\\1 \end{pmatrix} = n$ pairs. However, these pairs will not contribute to the number of relations that are reflexive and symmetric since they will already be included.
+ \item For a relation to be symmetric, if it includes the pair $(a,b)$, then it should also include the pair $(b,a)$ where $a \neq b$ since we already included the ones where $a = b$. The number of distinct unordered pairs from a set with n elements is $\begin{pmatrix} n\\2 \end{pmatrix} = \dfrac{n(n-1)}{2}$.
+ \item For each pair we selected, we can either include both $(a,b)$ and $(b,a)$ or we don't include any of them, leaving us with 2 choices for each pair. There are $2^{\frac{n(n-1)}{2}}$ choices in total.
+ \item Therefore, we can say that there are $2^{\frac{n(n-1)}{2}}$ relations that are both reflexive and symmetric.
+\end{itemize}
+\subsection*{b)}
+\begin{itemize}
+ \item The same thing for reflexivity will be applied here. The relations in the question should include all pairs $(a,a)$ for each element in the set $A$.
+ \item For a relation to be antisymmetric, if it contains the pair $(a,b)$, then it shouldn't contain the pair $(b,a)$ unless $a = b$. Again we have $\begin{pmatrix} n\\2 \end{pmatrix} = \dfrac{n(n-1)}{2}$ distinct unordered pairs.
+ \item For each pair we selected, we have 3 options:
+ \begin{itemize}
+  \item We can include $(a,b)$.
+  \item We can include $(b,a)$.
+  \item We don't include any of them.
+ \end{itemize}
+ \item There are $3^{\frac{n(n-1)}{2}}$ choices in total.
+ \item Therefore, we can say that there are $3^{\frac{n(n-1)}{2}}$ ways to form a relation that is both reflexive and antisymmetric.
+\end{itemize}
+
+\section*{Answer 6}
+\begin{itemize}
+ \item No, the transitive closure of an antisymmetric relation is not always antisymmetric. Let's disprove this claim by giving a counterexample.
+ \item Let's consider an antisymmetric relation $R$ which is $R = \{(1,2), (3,4), (4,1), (2,3)\}$ on a set $A = \{1,2,3,4\}$.
+ \item We can denote the transitive closure of $R$ as $R_T$ and $R_T$ is equal to:
+ \begin{equation*}
+  \begin{split}
+   R_T = \{(1,2),(3,4),(4,1),(2,3),(1,3),(3,1),(2,4),(4,2)\}
+  \end{split}
+ \end{equation*}
+ \item We can see that $R_T$ is not antisymmetric since it has $(1,3)$ and $(3,1)$ at the same time but $1\neq3$. It also has $(2,4)$ and $(4,2)$ but $4\neq2$.
+ \item Therefore, we can say that the transitive closure of an antisymmetric relation is not always antisymmetric.
+\end{itemize}
+
+\end{document}
