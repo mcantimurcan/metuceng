@@ -3,9 +3,9 @@
 File Directory::getFile(int index) const
 {
 	if (index >= numFiles() || index < 0) {
-        return File();
+	    return File();
 	}
-    return files[index];
+	return files[index];
 }
 
 size_t Directory::directorySize() const
