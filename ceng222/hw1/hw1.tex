@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name :  Mithat Can Timurcan\\
+Id Number :  2581064\\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+
+\subsection*{a)} 
+\begin{itemize}
+ \item We know that the variable $X$ takes one and only one value $x$. This makes events
+$\{X = x\}$ disjoint and exhaustive, and therefore we get the following,
+\begin{equation*}
+    \begin{split}
+        \sum_{x \in S} P(x) = \sum_{x \in S} \textbf{P}\{X = x\} = 1 \text{ where $S = \{1,2,3,4,5\}$}\\
+    \end{split}
+ \end{equation*}
+ \item Applying this to our variable $x$,
+ \begin{equation*}
+    \begin{split}
+        \sum_{x \in S} P(x) = \sum_{x \in S} \textbf{P}\{X = x\} = N + \dfrac{N}{2} + \dfrac{N}{3} + \dfrac{N}{4} + \dfrac{N}{5} = 1 \\
+        137N = 60 \rightarrow N = \dfrac{60}{137} \approx 0.438
+    \end{split}
+ \end{equation*}
+\end{itemize}
+
+
+\subsection*{b)} 
+\begin{equation*}
+    \begin{split}
+        \textbf{E}(X) = \mu_x = \sum_{x \in S} x P(x) = 1 \cdot P(1) + 2 \cdot P(2) + 3 \cdot P(3) + 4 \cdot P(4) + 5 \cdot P(5) \\
+         = 1 \cdot \dfrac{60}{137} + 2 \cdot \dfrac{30}{137} + 3 \cdot \dfrac{20}{137} + 4 \cdot \dfrac{15}{137} + 5 \cdot \dfrac{12}{137} = \dfrac{300}{137} \approx 2.190
+    \end{split}
+ \end{equation*}
+\subsection*{c)}
+\begin{equation*}
+    \begin{split}
+        \textbf{E}(X^2)= \sum_{x \in S} x^2 P(x) = 1 \cdot P(1) + 4 \cdot P(2) + 9 \cdot P(3) + 16 \cdot P(4) + 25 \cdot P(5) \\
+        = 1 \cdot \dfrac{60}{137} + 4 \cdot \dfrac{30}{137} + 9 \cdot \dfrac{20}{137} + 16 \cdot \dfrac{15}{137} + 25 \cdot \dfrac{12}{137} = \dfrac{900}{137} \approx 6.569 \\ \\
+        Var(X) = \textbf{E}(X^2) - \mu_x^2 = 6.569-(2.19)^2 \approx 1.774
+    \end{split}
+ \end{equation*}
+
+\subsection*{d)} 
+\begin{equation*}
+    \begin{split}
+        \textbf{E}(Y)= \sum_{y \in S} y P(y) = 1 \cdot P(1) + 2 \cdot P(2) + 3 \cdot P(3) + 4 \cdot P(4) + 5 \cdot P(5) \\
+        = 1 \cdot \dfrac{1}{15} + 2 \cdot \dfrac{2}{15} + 3 \cdot \dfrac{3}{15} + 4 \cdot \dfrac{4}{15} + 5 \cdot \dfrac{5}{15} = \dfrac{55}{15} \approx 3.667 \\ \\
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        \textbf{E}(XY)= \sum_{y \in S}\sum_{x \in S} xy P(x,y) = \sum_{y \in S}\sum_{x \in S} xy P(x)P(y) \approx 8.029
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        Cov(X,Y) = \textbf{E}(XY) - \textbf{E}(X)\textbf{E}(Y) = 8.029 - 3.667 \cdot 2.190 \approx 0.000
+    \end{split}
+\end{equation*}
+\begin{itemize}
+ \item Since we've found the covariance of $X$ and $Y$ as zero, we can say that these two events are relatively independent.
+\end{itemize}
+
+\section*{Answer 2}
+
+\subsection*{a)} 
+\begin{itemize}
+ \item We know the probability of the event ``at least one attempt is successful in 1000 trials'' is $95\%$, which is equal to:
+ \begin{equation*}
+    \begin{split}
+        \textbf{P}\{X \geq 1\} = 1 - \textbf{P}\{X = 0\} = 1 - \begin{pmatrix} 1000 \\ 0 \end{pmatrix}p^0q^{1000} = 0.95
+    \end{split}
+ \end{equation*}
+ \item Here, $p$ denotes the success and $q$ denotes the failure.
+ \item Solving for $q$ we get:
+ \begin{equation*}
+    \begin{split}
+        q^{1000} = 0.05 \rightarrow q \approx 0.997\\
+        p = 1 - q = 1 - 0.997 \approx 0.003
+    \end{split}
+ \end{equation*}
+ \item Therefore, we get the success rate as approximately 0.003.
+\end{itemize}
+
+\subsection*{b)} 
+\begin{itemize}
+ \item For part i) we can interpret the problem as follows:
+ \begin{equation*}
+    \begin{split}
+        \textbf{P}\{X > 500\}=\textbf{P}\{\text{more than 500 games needed to get 2 wins}\}\\
+        \textbf{P}\{\text{there are fewer than 2 wins in 500 games}\}\\
+        \textbf{P}\{Y < 2\} = \textbf{P}\{Y \leq 1\} \approx 0.558 \text{ using binocdf on octave.}
+    \end{split}
+ \end{equation*}
+ \item Or we can calculate it in the following way:
+ \begin{equation*}
+    \begin{split}
+        \textbf{P}\{Y \leq 1\} = \textbf{P}\{Y = 0\} + \textbf{P}\{Y = 1\}\\
+        \textbf{P}\{Y = 0\} = \begin{pmatrix} 500 \\ 0 \end{pmatrix}p^0q^{500} = (0.997)^{500} \approx 0.223\\
+        \textbf{P}\{Y = 1\} = \begin{pmatrix} 500 \\ 1 \end{pmatrix}p^1q^{499} = 500\cdot(0.003)\cdot(0.997)^{499} \approx 0.335\\
+        \textbf{P}\{Y \leq 1\} = \textbf{P}\{Y = 0\} + \textbf{P}\{Y = 1\} = 0.223 + 0.335 \approx 0.558\\
+    \end{split}
+ \end{equation*}
+ \item For part ii) we can apply the same procedure:
+ \begin{equation*}
+    \begin{split}
+        \textbf{P}\{X > 10,000\}=\textbf{P}\{\text{more than 10,000 games needed to get 2 wins}\}\\
+        \textbf{P}\{\text{there are fewer than 2 wins in 10,000 games}\}\\
+        \textbf{P}\{Y < 2\} = \textbf{P}\{Y \leq 1\} \approx 0.736 \text{ using binocdf on octave.}
+    \end{split}
+ \end{equation*}
+ \item Or we can calculate it in the following way:
+ \begin{equation*}
+    \begin{split}
+        \textbf{P}\{Y \leq 1\} = \textbf{P}\{Y = 0\} + \textbf{P}\{Y = 1\}\\
+        \textbf{P}\{Y = 0\} = \begin{pmatrix} 10,000 \\ 0 \end{pmatrix}p^0q^{10,000} = (0.9999)^{10,000} \approx 0.368\\
+        \textbf{P}\{Y = 1\} = \begin{pmatrix} 10,000 \\ 1 \end{pmatrix}p^1q^{9,999} = 10,000\cdot(0.0001)\cdot(0.9999)^{9,999} \approx 0.368\\
+        \textbf{P}\{Y \leq 1\} = \textbf{P}\{Y = 0\} + \textbf{P}\{Y = 1\} = 0.368 + 0.368 \approx 0.736\\
+    \end{split}
+ \end{equation*}
+\end{itemize}
+
+
+\subsection*{c)}
+\begin{itemize}
+ \item Let $X$ be the number of days that we're not feeling sick. We can say that $X$ is binomial with the values $n = 366$ and $p = 0.98$. We can't apply Poisson approximation on p since it's too large. However, we can apply Poisson approximation on $q = 0.02$ since it's value is small enough. Therefore we get the following equations:
+ \begin{equation*}
+    \begin{split}
+    \lambda = nq = (366)\cdot(0.02) = 7.32 \approx 7.5 \\
+        \textbf{P}\{X \geq 360\} = \textbf{P}\{Y \leq 6\} = F_Y(6) = 0.378 \text{ from Table A3.}\\
+    \end{split}
+ \end{equation*}
+\end{itemize}
+
+
+
+\section*{Answer 3}
+\subsection*{a)} 
+\begin{itemize}
+ \item We found our answer in \textbf{Q2c} by approximating the $\lambda$ value to match the table's values, it's different from what we get in Octave. We used the $\lambda$ value as 7.5 and found the result of approximately 0.378 in \textbf{Q2c}.
+ \item However, when we use the $\lambda$ value as 7.32 on Octave using the command \textbf{poisscdf(6, 7.32)}, we get the result of 0.403 and it's higher than what we've found in \textbf{Q2c}.
+ \item Increasing the value of $\lambda$ widens the Poisson distribution probability mass function (pmf), resulting in longer tails. This leads to lower cumulative distribution function (cdf) values at certain points. This is why we got a result which is higher that what we've found in \textbf{Q2c}.
+\end{itemize}
+
+\subsection*{b)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/code of b.jpeg}
+    \caption{Graph of the plot when $p = 0.98$.}
+    \label{fig:example_b}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/graph of b.jpeg}
+    \caption{Graph of the plot when $p = 0.98$.}
+    \label{fig:example_b_graph}
+\end{figure}
+
+\subsection*{c)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/code of c.jpeg}
+    \caption{Code of the plot when $p = 0.78$.}
+    \label{fig:example_c}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/graph of c.jpeg}
+    \caption{Graph of the plot when $p = 0.78$.}
+    \label{fig:example_c_graph}
+\end{figure}
+
+\begin{itemize}
+ \item In order to use Poisson distribution’s approximation to the Binomial distribution we need to have a large $n$ value and small $p$ value. Since our question gave us the $p$ value as 0.98 and it's too large, we used the $q$ value as our success rate and interpreted the problem in a different way.
+ \item Since our $q$ is small, we can see that in the graph of part b), Poisson distribution’s approximation is really close to the actual Binomial distribution. However, when our $q$ value gets larger from 0.02 to 0.22, we can see that it's not as accurate as before. This outcome validates our understanding that as the sample size $n$ increases and the success rate decreases, Poisson distribution tends to approximate the Binomial distribution.
+\end{itemize}
+
+
+
+\end{document}
