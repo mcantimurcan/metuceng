@@ -21,7 +21,7 @@ void print_network(std::vector<std::vector<std::pair<int,int>>>& network) {
 
 void read_from_file(std::vector<std::vector<std::pair<int, int>>>& network){
     int node_number, edge_number;
-    char addr[]= "inp04.txt"; // 01-10 are available
+    char addr[]= "inp10.txt"; // 01-10 are available
     std::ifstream infile (addr);
     if (!infile.is_open()){
         std::cout << "File \'"<< addr
