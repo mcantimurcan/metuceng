@@ -1,0 +1,109 @@
+# Mithat Can Timurcan 2581064
+
+.pos 0x0
+	irmovq stack, %rsp
+	irmovq head, %rdi
+	call selection_sort_rec
+	halt
+
+.pos 0x200
+head:
+	.quad 17
+    	.quad node1
+node1:
+	.quad 24
+    	.quad node2
+node2:
+	.quad 6
+    	.quad node3
+node3:
+	.quad 11
+    	.quad node4
+node4:
+	.quad 4
+    	.quad node5
+node5:
+    	.quad 5
+    	.quad node6
+node6:
+    	.quad 3
+    	.quad node7
+node7:
+	.quad 40
+    	.quad node8
+node8:
+	.quad 19
+    	.quad node9
+node9:
+	.quad 52
+    	.quad node10
+node10:
+    	.quad 8
+    	.quad 0
+	   
+selection_sort_rec:
+	andq %rdi, %rdi			# check if head is NULL
+	je done
+	mrmovq 8(%rdi), %rcx		# check if head->next is NULL
+	andq %rcx, %rcx
+	je done
+	rrmovq %rdi, %rsi 		# min = head
+	xorq %rcx, %rcx 		# prevMin = NULL
+	rrmovq %rdi, %rdx		# curr = head
+
+find_min:
+	mrmovq 8(%rdx), %r8		# we check if curr->next is NULL
+	andq %r8, %r8
+   	je found_min
+
+    	mrmovq (%r8), %rbx      	# rbx = curr->next->data
+    	mrmovq (%rsi), %r9      	# r9 = min->data
+    	subq %r9, %rbx          	# Compare min->data and curr->next->data
+    	jge no_update_min       	# If curr->next->data >= min->data, skip
+
+    	rrmovq %r8, %rsi        	# min = curr->next
+    	rrmovq %rdx, %rcx       	# prevMin = curr
+
+no_update_min:
+    	rrmovq %r8, %rdx        	# curr = curr->next
+    	jmp find_min
+
+found_min:
+	rrmovq %rdi, %r8
+	rrmovq %rsi, %r9
+    	subq %r8, %r9         		# compare head and min
+    	je recursive_call
+
+    	mrmovq 8(%rdi), %r8     	# r8 = head->next (temp)
+    	mrmovq 8(%rsi), %r10    	# head->next = min->next
+	rmmovq %r10, 8(%rdi) 
+
+	rrmovq %rsi, %r9		# r9 temporary register
+    	subq %r8, %r9	          	# temp == min
+    	je swap
+
+	rmmovq %r8, 8(%rsi)		# min->next = temp
+    	rmmovq %rdi, 8(%rcx)    	# prevMin->next = head
+    	jmp update_head
+
+swap:
+    	rmmovq %rdi, 8(%rsi)    	# min->next = head
+    	jmp update_head
+
+update_head:
+	rrmovq %rsi, %rdi       	# head = min (update head pointer)
+
+recursive_call:
+    	pushq %rdi              	# Save current head
+    	mrmovq 8(%rdi), %rdi         	# rdi = head->next
+    	call selection_sort_rec     	# Recursive call
+    	popq %rdi                    	# Restore current head
+    	rmmovq %rax, 8(%rdi)         	# head->next = result of recursive call
+	jmp done
+
+done:
+	rrmovq %rdi, %rax
+	ret
+	
+.pos 0x800
+stack:
