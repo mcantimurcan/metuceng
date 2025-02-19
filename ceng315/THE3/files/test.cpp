@@ -5,7 +5,7 @@
 
 void file_input(int &N,  
                 std::vector<std::vector<int>>& costs){
-    std::string file_name = "inp01.txt"; // inp01-inp10 are available.
+    std::string file_name = "inp10.txt"; // inp01-inp10 are available.
     std::ifstream infile (file_name);
 
     if(!infile.is_open()){
